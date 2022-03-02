@@ -33,4 +33,3 @@ if (strlen($email) - 4 != 0) {
 		fclose($userTxt);
 	}
 }
-?>

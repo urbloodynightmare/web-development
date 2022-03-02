@@ -10,4 +10,3 @@ if ((file_exists($email)) and (strlen($email) >= 5)) {
 		echo $tempArray[$i] . "<br />";
 	}
 }
-?>
