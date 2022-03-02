@@ -1,7 +1,6 @@
 PROGRAM PrintInfo(INPUT, OUTPUT);
 USES dos;
 BEGIN
-  // http://localhost:4001/cgi-bin/test2.cgi/?name=Ekaterina
   WRITELN('Content-Type: text/plain');
   WRITELN;
   WRITELN('REQUEST_METHOD : ', GetEnv('REQUEST_METHOD'));
