@@ -46,6 +46,6 @@ else {
 			$reliability -= $val;
 		}
 	}	
-	echo "The reliability of your password is $reliability"; //jidka63764
+	echo "The reliability of your password is $reliability";
 }
 		
