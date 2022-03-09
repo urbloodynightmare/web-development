@@ -1,51 +1,73 @@
 <?php
 
-$_SERVER['QUERY_STRING'];
-$tempString = $_GET['password'];
-$reliability = $i = $n = 0;
-$length = strlen($tempString);
+function getGetParameter(string $name): ?string
+{
+    return isset($_GET[$name]) ? $_GET[$name] : null;
+}
 
-if (!(ctype_alnum($tempString))) {
-    echo "The string $tempString is not a password";
+if (getGetParameter("password") === null) 
+{
+	return;
+}
+
+$password = getGetParameter("password");
+$len = strlen($password);
+
+if (!(ctype_alnum($password))) 
+{
+    echo "$password is not a password";
 } 
-else {
-	$reliability += 4*$length;
-	for ($i = 0; $i < $length; $i++) {
-		if (is_numeric($tempString[$i])) {
+else 
+{
+	$reliability += 4*$len;
+	for ($i = 0; $i < $len; $i++) 
+	{
+		if (is_numeric($password[$i])) 
+		{
 			$n++;			
 		}
 	}
 	$reliability += $n*4;
 	$n = 0;
-	for ($i = 0; $i < $length; $i++) {
-		if (ctype_upper($tempString[$i])) {
+	for ($i = 0; $i < $len; $i++)
+	{
+		if (ctype_upper($password[$i]))
+		{
 			$n++;			
 		}
 	}
-	if ($n != 0) {
-		$reliability += ($length - $n)*2;
+	if ($n !== 0)
+	{
+		$reliability += ($len - $n)*2;
 	}
 	$n = 0;
-	for ($i = 0; $i < $length; $i++) {
-		if (ctype_lower($tempString[$i])) {
+	for ($i = 0; $i < $len; $i++)
+	{
+		if (ctype_lower($password[$i]))
+		{
 			$n++;	
 		}
 	}
-	if ($n != 0) {
-		$reliability += ($length - $n)*2;
+	if ($n !== 0)
+	{
+		$reliability += ($len - $n)*2;
 	}
-	if (ctype_alpha($tempString)) {
-		$reliability -= $length;			
+	$n = 0;
+	if (ctype_alpha($password))
+	{
+		$reliability -= $len;			
 	}
-	if (ctype_digit($tempString)) {
-		$reliability -= $length;			
+	if (ctype_digit($password))
+	{
+		$reliability -= $len;			
 	}
-	$result = count_chars($tempString);
-	foreach ($result as $val) {
-		if ($val > 1) {
+	$result = count_chars($password);
+	foreach ($result as $val)
+	{
+		if ($val > 1)
+		{
 			$reliability -= $val;
 		}
 	}	
-	echo "The reliability of your password is $reliability";
+	echo "Reliability : $reliability";
 }
-		

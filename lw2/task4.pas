@@ -6,17 +6,17 @@ VAR
   Str: STRING;
 BEGIN
   Str := GetEnv('QUERY_STRING');
-  if pos(key, str) > 0
-  then
-    begin
-	  Str := Copy(Str, POS(Key, Str) + length(Key) + 1, Length(Str)-(POS(Key, Str) + length(Key))); 
-	  if POS('&', Str) > 0
-	  then
+  IF POS(Key, Str) > 0
+  THEN
+    BEGIN
+	  Str := Copy(Str, POS(Key, Str) + Length(Key) + 1, Length(Str)-(POS(Key, Str) + Length(Key))); 
+	  IF POS('&', Str) > 0
+	  THEN
         GetQueryStringParameter := COPY(Str, 1, POS('&', Str) - 1)
-	  else
+	  ELSE
 	    GetQueryStringParameter := COPY(Str, 1, Length(str))
-	end
-  else
+	END
+  ELSE
     GetQueryStringParameter := ''
 END;
   
@@ -24,6 +24,6 @@ BEGIN {Hello}
   WRITELN('Content-Type: text/plain');
   WRITELN;
   WRITELN('First Name: ', GetQueryStringParameter('first_name'));
-  WRITELN('Last Name: ', GetQueryStringParameter('last_name'));
+  WRITELN('Surname: ', GetQueryStringParameter('surname'));
   WRITELN('Age: ', GetQueryStringParameter('age'))
 END. {Hello}

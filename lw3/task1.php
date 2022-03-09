@@ -1,4 +1,5 @@
 <?php
 
-$tempString = $_SERVER['QUERY_STRING'];
-echo str_replace('%20', ' ', $tempString)
+$_SERVER['QUERY_STRING'];
+$tempString = $_GET['text'];
+echo preg_replace('/\s+/', ' ', $tempString);
